@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ฟอร์มลงทะเบียน</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #app {
+      background: white;
+      padding: 25px 35px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #444;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #667eea;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #5563c1;
+    }
+
+    .result {
+      margin-top: 20px;
+      background-color: #e0f7fa;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #81d4fa;
+    }
+
+    .result p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>ฟอร์มลงทะเบียน</h1>
+    <form @submit.prevent="register">
+      <div>
+        <label for="name">ชื่อ:</label>
+        <input type="text" id="name" v-model="name" placeholder="กรอกชื่อของคุณ" required />
+      </div>
+      <div>
+        <label for="email">อีเมล:</label>
+        <input type="email" id="email" v-model="email" placeholder="กรอกอีเมลของคุณ" required />
+      </div>
+      <button type="submit">ลงทะเบียน</button>
+    </form>
+
+    <div class="result" v-if="submitted">
+      <h2>ผลลัพธ์:</h2>
+      <p><strong>ชื่อ:</strong> {{ name }}</p>
+      <p><strong>อีเมล:</strong> {{ email }}</p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        email: '',
+        submitted: false
+      },
+      methods: {
+        register() {
+          this.submitted = true;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
